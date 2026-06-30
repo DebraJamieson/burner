@@ -3,12 +3,12 @@ import { AlertTriangle, ArrowUpRight } from "lucide-react";
 
 import {
   communications,
-  dashboardMetrics,
   dashboardSections,
   products,
   suppliers,
 } from "@/lib/data";
 import { isSupabaseConfigured } from "@/lib/supabase";
+import { DashboardMetrics } from "./dashboard-metrics";
 
 export default function DashboardPage() {
   const supabaseReady = isSupabaseConfigured();
@@ -49,24 +49,7 @@ export default function DashboardPage() {
           </section>
         ) : null}
 
-        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {dashboardMetrics.map((metric) => {
-            const Icon = metric.icon;
-            return (
-              <article
-                className="rounded-lg border border-[#DDD1BF] bg-white p-5 shadow-sm"
-                key={metric.label}
-              >
-                <div className="flex items-center justify-between">
-                  <p className="text-sm text-[#675D52]">{metric.label}</p>
-                  <Icon className="h-5 w-5 text-[#5F6F52]" />
-                </div>
-                <p className="mt-4 text-3xl font-semibold">{metric.value}</p>
-                <p className="mt-2 text-sm text-[#675D52]">{metric.detail}</p>
-              </article>
-            );
-          })}
-        </section>
+        <DashboardMetrics />
 
         <section className="grid gap-4 lg:grid-cols-4">
           {dashboardSections.map((section) => {
